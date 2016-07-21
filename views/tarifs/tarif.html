@@ -1,0 +1,268 @@
+<script type="text/javascript">
+    var btn1 = document.getElementById("idTarifs");
+    if (btn1 != null)
+        btn1.className = "active open";
+    var btn = $("#idClasses").removeClass("active open");
+    var btn = $("#idMatieres").removeClass("active open");
+    var btn = $("#idEleves").removeClass("active open");
+    var btn = $("#idTransport").removeClass("active open");
+    /* if(btn!=null)
+     btn.removeClass("active open"); */
+</script>
+
+
+<!-- /section:basics/content.breadcrumbs -->
+<div class="breadcrumbs" id="breadcrumbs">
+
+    <ul class="breadcrumb">
+        <li><i class="ace-icon fa fa-home home-icon"></i> <a href="#/accueil">Accueil</a></li>
+    </ul>
+    <!-- /.breadcrumb -->
+
+    <!-- #section:basics/content.searchbox -->
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon"> <input type="text"
+                                             placeholder="Rechercher ..." class="nav-search-input"
+                                             id="nav-search-input" autocomplete="off" /> <i
+                                             class="ace-icon fa fa-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div>
+    <!-- /.nav-search -->
+
+    <!-- /section:basics/content.searchbox -->
+</div><br/>
+<div class="page-content"  ng-controller="TarifCtrl">
+    <div class="row" >
+        <div class="col-md-6" ></div>
+        <div class="col-md-3" ><strong>INSCRIPTION</strong></div>
+    </div><br/><br/>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row" ng-show="tarifs.length != 0">
+                <!-- #section:pages/pricing.small-header -->
+                <div class="col-xs-3 col-sm-2 pricing-span-header">
+                    <div class="widget-box transparent">
+                        <div class="widget-header">
+                            <h5 class="widget-title bigger lighter">Tarif</h5>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main no-padding">
+                                <ul class="list-unstyled list-striped pricing-table-header">
+                                    <li>Frais G&eacute;n&eacute;ral</li>
+                                    <li>Cotisation A.P.E</li>
+                                    <li>Mensualit&eacute octobre</li>
+                                    <li>Uniforme</li>
+                                    <li>Tenue de sport</li>
+                                    <li>Frais dossier examen</li>
+                                    <li>Total</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /section:pages/pricing.small-header -->
+
+                <!-- #section:pages/pricing.small-body -->
+                <div class="col-xs-9 col-sm-10 pricing-span-body">
+                    <div ng-repeat="tarif in tarifs">
+                        <div class="pricing-span">
+                            <div ng-class="'widget-box pricing-box-small widget-color-' + tarif.label_css">
+                                <div class="widget-header">
+                                    <h5 class="widget-title bigger lighter">{{tarif.libelle}}</h5>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main no-padding">
+                                        <ul class="list-unstyled list-striped pricing-table">
+                                            <li>{{tarif.frais_general}}</li>
+                                            <li>{{tarif.cotisation_ape}}</li>
+                                            <li>{{tarif.mens_octobre}}</li>
+                                            <li>{{tarif.uniforme}}</li>
+                                            <li>{{tarif.tenue_sport}}</li>
+                                            <li>{{tarif.frais_examen}}</li>
+                                        </ul>
+
+                                        <div class="price">
+                                            <span
+                                                class="label label-lg label-inverse arrowed-in arrowed-in-right">
+                                                {{tarif.total}} <small>/mois</small>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+                                        <a ng-click="popupModifierTarif(tarif.id_tarif)"
+                                           ng-class="'btn btn-block btn-sm ' + tarif.label_button"> <span>Modifier</span>
+                                        </a>
+                                    </div>
+
+                                    <div ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+                                        <a ng-click="popupSupprimerTarif(tarif.id_tarif)"
+                                           ng-class="'btn btn-block btn-sm ' + tarif.label_button"> <span>Supprimer</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-24"></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12" ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+
+                    <a ng-click="popupAjoutTarif()" class="btn btn-info btn-sm" style="cursor: pointer">Ajouter un tarif
+                    </a>
+
+                </div>
+            </div><br/>
+
+            <hr/>
+
+        </div>	 </div>	
+
+
+    <div class="row" >
+        <div class="col-md-6" ></div>
+        <div class="col-md-3" ><strong>REINSCRIPTION</strong></div>
+    </div><br/><br/>
+    <div class="row" ng-show="tarifsRe.length != 0">
+        <!-- #section:pages/pricing.small-header -->
+        <div class="col-xs-3 col-sm-2 pricing-span-header">
+            <div class="widget-box transparent">
+                <div class="widget-header">
+                    <h5 class="widget-title bigger lighter">Tarif</h5>
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-main no-padding">
+                        <ul class="list-unstyled list-striped pricing-table-header">
+                            <li>Frais G&eacute;n&eacute;ral</li>
+                            <li>Cotisation A.P.E</li>
+                            <li>Mensualit&eacute octobre</li>
+                            <li>Frais dossier examen</li>
+                            <li>Total</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /section:pages/pricing.small-header -->
+
+        <!-- #section:pages/pricing.small-body -->
+        <div class="col-xs-9 col-sm-10 pricing-span-body">
+            <div ng-repeat="tarif in tarifsRe">
+                <div class="pricing-span">
+                    <div ng-class="'widget-box pricing-box-small widget-color-' + tarif.label_css">
+                        <div class="widget-header">
+                            <h5 class="widget-title bigger lighter">{{tarif.libelle_re}}</h5>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main no-padding">
+                                <ul class="list-unstyled list-striped pricing-table">
+                                    <li>{{tarif.frais_general_re}}</li>
+                                    <li>{{tarif.cotisation_ape_re}}</li>
+                                    <li>{{tarif.mens_octobre_re}}</li>
+                                    <li>{{tarif.frais_examen_re}}</li>
+                                </ul>
+
+                                <div class="price">
+                                    <span
+                                        class="label label-lg label-inverse arrowed-in arrowed-in-right">
+                                        {{tarif.total_re}} <small>/mois</small>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+                                <a ng-click="popupModifierTarifRe(tarif.id_tarif)"
+                                   ng-class="'btn btn-block btn-sm ' + tarif.label_button"> <span>Modifier</span>
+                                </a>
+                            </div>
+
+                            <div ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+                                <a ng-click="popupSupprimerTarifRe(tarif.id_tarif)"
+                                   ng-class="'btn btn-block btn-sm ' + tarif.label_button"> <span>Supprimer</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-24"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12" ng-if="user.id_profil != 2 && user.id_profil != 4 &&  user.id_profil != 6">
+
+                <a ng-click="popupAjoutTarifRe()" class="btn btn-info btn-sm" style="cursor: pointer">Ajouter un tarif
+                </a>
+            </div>
+        </div>
+    </div>
+    <modal title="Ajout Tarif" visible="showAjoutTarif">
+        <div
+            ng-include="gOptions.appname + 'views/tarifs/ajout-mod-tarif.html'"></div>
+    </modal>
+    <modal title="Modifier Tarif" visible="showModifierTarif">
+        <div
+            ng-include="gOptions.appname + 'views/tarifs/ajout-mod-tarif.html'"></div>
+    </modal>
+
+    <modal title="Suppression Tarif" visible="showSupprTarif">
+        <div class="modal-content"
+             style="text-align: center; padding-bottom: 10px">
+            <br /> Voulez-vous vraiment supprimer ce tarif ? <br />
+        </div>
+
+        <div class="modal-footer">
+            <button type="reset" class="btn" ng-click="annulerSupprTarif()">
+                <i class="ace-icon fa fa-undo bigger-110"></i> Annuler
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+
+            <button type="button" class="btn btn-info"
+                    ng-click="confirmSupprTarif()">
+                <i class="ace-icon fa fa-check bigger-110"></i> Confirmer
+            </button>
+        </div>
+
+    </modal>
+
+    <modal title="Ajout Tarif" visible="showAjoutTarifRe">
+        <div
+            ng-include="gOptions.appname + 'views/tarifs/ajout-mod-tarif-re.html'"></div>
+    </modal>
+    <modal title="Modifier Tarif" visible="showModifierTarifRe">
+        <div
+            ng-include="gOptions.appname + 'views/tarifs/ajout-mod-tarif-re.html'"></div>
+    </modal>
+
+    <modal title="Suppression Tarif" visible="showSupprTarifRe">
+        <div class="modal-content"
+             style="text-align: center; padding-bottom: 10px">
+            <br /> Voulez-vous vraiment supprimer ce tarif ? <br />
+        </div>
+
+        <div class="modal-footer">
+            <button type="reset" class="btn" ng-click="annulerSupprTarifRe()">
+                <i class="ace-icon fa fa-undo bigger-110"></i> Annuler
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+
+            <button type="button" class="btn btn-info"
+                    ng-click="confirmSupprTarifRe()">
+                <i class="ace-icon fa fa-check bigger-110"></i> Confirmer
+            </button>
+        </div>
+
+    </modal>
+</div>

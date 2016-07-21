@@ -1,0 +1,120 @@
+.imghover {
+  border: solid 2px blue;
+  margin: -2px;
+}
+
+input:disabled {
+    background: #dddddd;
+}
+
+
+.widget-body .alert:last-child {
+    margin-bottom: 5px;
+}
+
+.clearfix{
+    clear: both
+}
+
+
+#notesCCMoy{
+    
+    float: left;
+    margin-right: 5px
+}
+
+#moyCC{
+    margin-bottom: 5px;
+}
+
+
+#notesFinale{
+    margin-bottom: 5px;
+}
+
+#notesComp
+{
+   float: left;  
+}
+
+.noteComp{
+    height: 75px;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+     border-radius: 4px;
+    
+    
+}
+
+
+
+.noteFinale{
+    
+    height: 25px;
+     margin: 0;
+    padding: 0;
+    width: 245px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+     border-radius: 4px;
+}
+
+.noteCC{
+    
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    width: 70px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+     border-radius: 4px;
+}
+
+
+.libelle {
+    font-weight: bold;
+}
+
+.libellePresence {
+    font-size: 13px;
+}
+    
+.noteMoyCC {
+    
+    height: 25px;
+     margin: 0;
+    padding: 0;
+    width: 140px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+     border-radius: 4px;
+}
+
+
+
+.presence{
+     float: left;  
+    height: 85px;
+    margin-right:5px;
+    padding: 0;
+    width: 80px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+     border-radius: 4px;
+}
+
+
+
